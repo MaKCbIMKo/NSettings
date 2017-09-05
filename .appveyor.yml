@@ -1,0 +1,25 @@
+init:
+  - git config --global core.autocrlf true
+
+clone_depth: 1
+
+image: Visual Studio 2017
+platform: Any CPU
+configuration: Debug
+
+test: off
+deploy: off
+
+for:
+  -
+    branches:
+      only:
+        - dev
+        - /feature/.*/
+
+  -
+    branches:
+      only:
+        - master
+
+    configuration: Release
