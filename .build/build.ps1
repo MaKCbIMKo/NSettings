@@ -11,5 +11,12 @@ function __exec($cmd) {
     }
 }
 
+Write-Host "# Build has been begun"
+
+Write-Host "# Restore NuGet packages"
 __exec msbuild /t:restore
+
+Write-Host "# Build solution"
 __exec msbuild NSettings.sln /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+
+Write-Host "# Build has been finished"
