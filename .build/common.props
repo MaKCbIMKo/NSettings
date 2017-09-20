@@ -1,6 +1,4 @@
 <Project>
-  <Import Project="..\version.props" />
-
   <PropertyGroup>
     <Product>NSettings Library</Product>
     <SignAssembly>true</SignAssembly>

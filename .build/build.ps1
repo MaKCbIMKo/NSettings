@@ -1,22 +1,11 @@
-function __exec($cmd) {
-    $cmdName = [IO.Path]::GetFileName($cmd)
-    Write-Host -ForegroundColor Cyan "> $cmdName $args"
-    $originalErrorPref = $ErrorActionPreference
-    $ErrorActionPreference = 'Continue'
-    & $cmd @args
-    $exitCode = $LASTEXITCODE
-    $ErrorActionPreference = $originalErrorPref
-    if($exitCode -ne 0) {
-        throw "'$cmdName $args' failed with exit code: $exitCode"
-    }
-}
+. "shared.ps1"
 
 Write-Host "# Build has been begun"
 
 Write-Host "# Restore NuGet packages"
-__exec msbuild /t:restore
+__exec msbuild /t:restore /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 Write-Host "# Build solution"
-__exec msbuild NSettings.sln /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+__exec msbuild /t:build /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 Write-Host "# Build has been finished"

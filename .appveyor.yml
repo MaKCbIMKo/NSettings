@@ -1,7 +1,15 @@
+version: 0.1.0.{build}
+
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+
 init:
   - git config --global core.autocrlf true
 
 clone_depth: 1
+skip_branch_with_pr: true
 
 image: Visual Studio 2017
 platform: Any CPU
@@ -26,3 +34,10 @@ for:
         - master
 
     configuration: Release
+
+    after_build:
+      - ps: .\.build\pack.ps1
+
+    artifacts:
+      - path: '**\*.nupkg'
+        name: nuget_packages
