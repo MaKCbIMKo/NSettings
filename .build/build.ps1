@@ -1,4 +1,4 @@
-. ".\shared.ps1"
+Import-Module $PSScriptRoot\shared.ps1
 
 Write-Host "# Build has been begun"
 
