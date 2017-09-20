@@ -1,4 +1,4 @@
-. "shared.ps1"
+. ".\shared.ps1"
 
 Write-Host "# Packing projects has been begun"
 
