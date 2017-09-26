@@ -9,7 +9,7 @@ init:
   - git config --global core.autocrlf true
 
 install:
-  - git submodule init
+  - git submodule update --init
 
 clone_depth: 1
 skip_branch_with_pr: true
