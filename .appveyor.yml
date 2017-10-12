@@ -16,7 +16,7 @@ dotnet_csproj:
   patch: true
   file: '**\*.csproj'
   version: '$(version)'
-  package_version: '$(package_version}'
+  package_version: '$(package_version)'
 
 image: Visual Studio 2017
 platform: Any CPU
