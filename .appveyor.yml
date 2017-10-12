@@ -23,7 +23,7 @@ platform: Any CPU
 configuration: Debug
 
 before_build:
-  - ps: Get-Content $PSScriptRoot\src\NSettings\NSettings.csproj
+  - ps: Get-Content C:\projects\nsettings\src\NSettings\NSettings.csproj
 
 build_script:
   - ps: .\.build\build.ps1
