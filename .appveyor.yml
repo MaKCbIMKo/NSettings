@@ -10,7 +10,7 @@ clone_depth: 1
 skip_branch_with_pr: true
 
 install:
-  - git submodule update --init
+  - git clone -q --depth=1 --branch=master https://github.com/MaKCbIMKo/NSettings.Build.git .\.build
   - ps: Import-Module .\.build\shared.ps1
 
 dotnet_csproj:
@@ -61,10 +61,10 @@ for:
           }
 
     deploy:
-      provider: NuGet
-      api_key:
-        secure: VVUgpN7A/HEhl0JgkEPg4ViNEviMzJDQ2aCJUIhGMQ3pPOpYTrGI+J/45OevSI52
-      skip_symbols: false
-      artifact: nuget_packages
-      on:
-        appveyor_repo_tag: true
+      - provider: NuGet
+        api_key:
+          secure: VVUgpN7A/HEhl0JgkEPg4ViNEviMzJDQ2aCJUIhGMQ3pPOpYTrGI+J/45OevSI52
+        skip_symbols: false
+        artifact: nuget_packages
+        on:
+          appveyor_repo_tag: true
