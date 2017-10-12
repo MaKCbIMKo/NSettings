@@ -62,11 +62,12 @@ for:
           }
 
     deploy:
-      - provider: NuGet
-        name: nuget_deployment
-        api_key:
-          secure: VVUgpN7A/HEhl0JgkEPg4ViNEviMzJDQ2aCJUIhGMQ3pPOpYTrGI+J/45OevSI52
-        skip_symbols: false
-        artifact: nuget_packages
-        on:
-          master_plus_tag: true
+      provider: NuGet
+      server: 
+      api_key:
+        secure: VVUgpN7A/HEhl0JgkEPg4ViNEviMzJDQ2aCJUIhGMQ3pPOpYTrGI+J/45OevSI52
+      skip_symbols: false
+      symbol_server:
+      artifact: nuget_packages
+      on:
+        master_plus_tag: true
