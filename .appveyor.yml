@@ -53,12 +53,17 @@ for:
 
     configuration: Release
 
+  -
+    branches:
+      only:
+        - /v\d+\.\d+\.\d+/
+
     before_build:
       - ps: |
-          if(($env:APPVEYOR_REPO_BRANCH -eq 'master') -and ($env:APPVEYOR_REPO_TAG -eq $true) -and ($env:APPVEYOR_REPO_TAG_NAME -eq "v$env:version"))
+          if(($env:APPVEYOR_REPO_TAG -eq $true) -and ($env:APPVEYOR_REPO_TAG_NAME -ne "v$env:version"))
           {
-              Write-Host "# Deploy will be performed for $env:APPVEYOR_REPO_BRANCH $env:APPVEYOR_REPO_TAG_NAME"
-              $env:master_plus_tag = true
+              Write-Host "# Incorrect version"
+              $host.SetShouldExit(1)
           }
 
     deploy:
@@ -69,5 +74,3 @@ for:
       skip_symbols: false
       symbol_server:
       artifact: nuget_packages
-      on:
-        master_plus_tag: true
