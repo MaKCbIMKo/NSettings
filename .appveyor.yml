@@ -10,7 +10,7 @@ clone_depth: 1
 skip_branch_with_pr: true
 
 install:
-  - git submodule update --init
+  - git clone -q --depth=1 --branch=master https://github.com/MaKCbIMKo/NSettings.Build.git .\.build
   - ps: Import-Module .\.build\shared.ps1
 
 dotnet_csproj:
