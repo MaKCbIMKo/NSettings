@@ -10,7 +10,7 @@ clone_depth: 1
 skip_branch_with_pr: true
 
 install:
-  - git clone -q --depth=1 --branch=master https://github.com/MaKCbIMKo/NSettings.Build.git .\.build
+  - git submodule update --init --recursive
   - ps: Import-Module .\.build\shared.ps1
 
 dotnet_csproj:
@@ -55,9 +55,10 @@ for:
 
     before_build:
       - ps: |
-          if($env:APPVEYOR_REPO_TAG -eq $true -AND $env:APPVEYOR_REPO_TAG_NAME -ne "v$env:version")
+          if(($env:APPVEYOR_REPO_BRANCH -eq 'master') -and ($env:APPVEYOR_REPO_TAG -eq $true) -and ($env:APPVEYOR_REPO_TAG_NAME -eq "v$env:version"))
           {
-              $host.SetShouldExit(1)
+              Write-Host "# Deploy will be performed for $env:APPVEYOR_REPO_BRANCH $env:APPVEYOR_REPO_TAG_NAME"
+              $env:master_plus_tag = true
           }
 
     deploy:
@@ -67,4 +68,4 @@ for:
         skip_symbols: false
         artifact: nuget_packages
         on:
-          appveyor_repo_tag: true
+          master_plus_tag: true
