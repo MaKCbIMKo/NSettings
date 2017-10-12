@@ -63,6 +63,7 @@ for:
 
     deploy:
       - provider: NuGet
+        name: nuget_deployment
         api_key:
           secure: VVUgpN7A/HEhl0JgkEPg4ViNEviMzJDQ2aCJUIhGMQ3pPOpYTrGI+J/45OevSI52
         skip_symbols: false
