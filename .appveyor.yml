@@ -58,6 +58,8 @@ for:
       only:
         - /v\d+\.\d+\.\d+/
 
+    configuration: Release
+
     before_build:
       - ps: |
           if(($env:APPVEYOR_REPO_TAG -eq $true) -and ($env:APPVEYOR_REPO_TAG_NAME -ne "v$env:version"))
