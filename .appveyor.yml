@@ -5,6 +5,7 @@ environment:
 init:
   - git config --global core.autocrlf true
   - ps: Update-AppveyorBuild -Version "$env:version.$env:APPVEYOR_BUILD_NUMBER"
+  - cmd: set
 
 clone_depth: 1
 skip_branch_with_pr: true
