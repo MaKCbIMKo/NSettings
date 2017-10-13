@@ -34,7 +34,6 @@ artifacts:
     name: nuget_packages
 
 test: off
-deploy: off
 
 for:
   -
@@ -63,7 +62,7 @@ for:
 
     deploy:
       provider: NuGet
-      server: 
+      server:
       api_key:
         secure: VVUgpN7A/HEhl0JgkEPg4ViNEviMzJDQ2aCJUIhGMQ3pPOpYTrGI+J/45OevSI52
       skip_symbols: false
