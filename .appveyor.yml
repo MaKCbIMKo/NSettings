@@ -54,10 +54,9 @@ for:
 
     before_build:
       - ps: |
-          if(($env:APPVEYOR_REPO_BRANCH -eq 'master') -and ($env:APPVEYOR_REPO_TAG -eq $true) -and ($env:APPVEYOR_REPO_TAG_NAME -eq "v$env:version"))
+          if(($env:APPVEYOR_REPO_TAG -eq $true) -and ($env:APPVEYOR_REPO_TAG_NAME -ne "v$env:version"))
           {
-              Write-Host "# Deploy will be performed for $env:APPVEYOR_REPO_BRANCH $env:APPVEYOR_REPO_TAG_NAME"
-              $env:master_plus_tag = true
+              $host.SetShouldExit(1)
           }
 
     deploy:
@@ -69,4 +68,4 @@ for:
       symbol_server:
       artifact: nuget_packages
       on:
-        master_plus_tag: true
+        appveyor_repo_tag: true
